@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JC Ayala - Servicio Automotriz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Taller mecánico familiar en La Florida, a pasos de Metro Trinidad. Mecánica, mantenciones, distribución, frenos y scanner, con el respaldo de una familia que corre carreras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800;900&family=Archivo:wght@400;500;600&display=swap">
+<style>
+/* Layout: pit-lane dark. Full-bleed bands, slanted cuts taken from the logo's 60° terminals, livery double-stripe as the recurring mark. */
+:root{
+  color-scheme: dark;
+  --asphalt:#111111;
+  --carbon:#191919;
+  --steel:#252525;
+  --line:#353535;
+  --chalk:#f3f1ec;
+  --mute:#a3a7ab;
+  --orange:#ff5a1f;
+  --orange-hi:#ff7745;
+  --display:"Saira Condensed","Arial Narrow",Impact,sans-serif;
+  --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cut:22px;
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--asphalt);color:var(--chalk);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--asphalt)}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.95;text-transform:uppercase;letter-spacing:.005em;margin:0;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+/* buttons: slanted like the logo strokes */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:13px 26px;border:0;cursor:pointer;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:background .2s,transform .2s}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-wa{background:var(--orange);color:#fff}
+.btn-wa:hover{background:var(--orange-hi);transform:translateY(-2px)}
+.btn-ghost{background:var(--steel);color:var(--chalk)}
+.btn-ghost:hover{background:var(--line)}
+
+/* stripe: the Corolla's double livery line */
+.stripe{display:inline-block;width:46px;height:9px;background:linear-gradient(var(--orange) 0 3px,transparent 3px 6px,var(--chalk) 6px 9px);transform:skewX(-30deg)}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange)}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(17,17,17,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.top .logo img{height:48px;width:auto}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-family:var(--display);font-weight:700;font-size:.98rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--mute);transition:color .2s}
+.nav a:hover{color:var(--chalk)}
+.top .btn{padding:9px 20px;font-size:.95rem}
+.menu{display:none;background:none;border:0;color:var(--chalk);padding:8px;cursor:pointer}
+.menu svg{width:26px;height:26px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--carbon)}
+.hero-img{position:absolute;inset:0;background:url(img/podio-trofeo.jpg) 62% 40%/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,17,.96) 0%,rgba(17,17,17,.82) 38%,rgba(17,17,17,.2) 75%,rgba(17,17,17,.35) 100%),linear-gradient(0deg,rgba(17,17,17,.9) 0%,transparent 40%)}
+.hero .wrap{position:relative;z-index:1;padding-block:clamp(70px,11vw,130px) clamp(60px,9vw,110px)}
+.hero-copy{max-width:620px;display:grid;gap:24px}
+.hero h1{font-size:clamp(3.1rem,8.5vw,6.4rem);font-weight:900;transform:skewX(-6deg);transform-origin:left bottom}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero .lede{font-size:1.12rem;color:#d6d4cf;max-width:48ch}
+.hero .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
+.hero .where{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-size:.95rem}
+
+/* facts strip */
+.facts{background:var(--orange);color:#fff}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.fact{padding-block:20px;padding-inline:18px;border-left:1px solid rgba(255,255,255,.28);display:grid;gap:4px;align-content:start}
+.fact:first-child{border-left:0;padding-left:0}
+.fact b{font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+.fact span{font-size:.9rem;opacity:.92}
+
+section{padding-block:clamp(72px,10vw,120px)}
+.sec-head{display:grid;gap:16px;margin-bottom:clamp(36px,5vw,56px);max-width:760px}
+.sec-head h2{font-size:clamp(2.4rem,5.6vw,4rem)}
+.sec-head p{color:var(--mute);font-size:1.08rem;max-width:58ch}
+
+/* nosotros */
+.about-grid{display:grid;grid-template-columns:minmax(0,760px);gap:clamp(36px,6vw,80px);align-items:center}
+.about-text{display:grid;gap:22px;min-width:0}
+.about-text p{color:#d3d1cc;font-size:1.06rem;max-width:60ch}
+.about-text p strong{color:var(--chalk);font-weight:600}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);min-width:0}
+.pillar{background:var(--asphalt);padding:22px 20px;display:grid;gap:8px;align-content:start}
+.pillar h3{font-size:1.4rem;color:var(--chalk)}
+.pillar p{font-size:.95rem;color:var(--mute)}
+.about-media{position:relative;display:grid;gap:14px;min-width:0}
+.about-media .main{clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut));aspect-ratio:5/4;object-fit:cover;object-position:50% 45%;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.duo img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.duo img:last-child{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%)}
+
+/* equipo */
+.team-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(30px,4vw,44px)}
+.team-ctrl{display:flex;gap:10px}
+.t-btn{width:50px;height:50px;display:grid;place-items:center;background:var(--steel);color:var(--chalk);border:0;cursor:pointer;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:background .2s}
+.t-btn:hover{background:var(--orange)}
+.t-btn svg{width:22px;height:22px}
+.team-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none}
+.team-track::-webkit-scrollbar{display:none}
+.t-slide{flex:0 0 min(40%,480px);margin:0;scroll-snap-align:start;position:relative;overflow:hidden;background:var(--steel);aspect-ratio:4/5}
+.t-slide img{width:100%;height:100%;object-fit:cover}
+.t-slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:50px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.85));display:grid;gap:2px}
+.t-slide figcaption b{font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;letter-spacing:.02em}
+.t-slide figcaption span{font-size:.92rem;color:#dcdad5}
+.t-dots{display:flex;gap:8px;margin-top:20px}
+.t-dots button{width:28px;height:5px;border:0;padding:0;background:var(--line);cursor:pointer;transform:skewX(-30deg)}
+.t-dots button[aria-current="true"]{background:var(--orange)}
+@media (max-width:640px){.t-slide{flex-basis:84%}}
+
+/* galería */
+.alt{background:var(--carbon)}
+.gallery{columns:3 300px;column-gap:14px}
+.shot{break-inside:avoid;margin:0 0 14px;position:relative;display:block;width:100%;padding:0;border:0;background:var(--steel);cursor:zoom-in;overflow:hidden;text-align:left;color:inherit;font:inherit}
+.shot img{width:100%;height:auto;transition:transform .5s ease,filter .3s}
+.shot:hover img{transform:scale(1.04);filter:brightness(.8)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.82));font-size:.9rem;font-weight:500;color:#fff}
+.badge{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-family:var(--display);font-weight:700;letter-spacing:.12em;font-size:.78rem;text-transform:uppercase;padding:5px 10px 4px;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+.badge svg{width:12px;height:12px}
+.gallery-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:28px;color:var(--mute)}
+
+/* lightbox */
+.lb[hidden]{display:none}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(5,5,6,.94);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb-inner{display:grid;gap:14px;max-width:min(1100px,100%);justify-items:center}
+.lb img{max-height:78vh;width:auto;max-width:100%}
+.lb-bar{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;width:100%}
+.lb-bar p{color:#e4e2dd}
+.lb-bar a{color:var(--orange);font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.lb-close,.lb-nav{position:absolute;background:var(--steel);border:0;color:var(--chalk);width:46px;height:46px;display:grid;place-items:center;cursor:pointer}
+.lb-close{top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px))}
+.lb-nav.prev{left:calc(14px + env(safe-area-inset-left,0px));top:50%}
+.lb-nav.next{right:calc(14px + env(safe-area-inset-right,0px));top:50%}
+.lb svg{width:22px;height:22px}
+
+/* reseñas */
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.review{background:var(--asphalt);border:1px solid var(--line);padding:28px 26px;display:grid;gap:16px;align-content:space-between}
+.review blockquote{margin:0;font-size:1.12rem;line-height:1.55;color:#ecebe6}
+.review blockquote::before{content:"“";display:block;font-family:var(--display);font-weight:900;font-size:3.4rem;line-height:.6;color:var(--orange);margin-bottom:6px}
+.review footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.review cite{font-style:normal;font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.stars{color:var(--orange);letter-spacing:2px;font-size:.95rem}
+.review .src{font-size:.82rem;color:var(--mute)}
+.reviews-foot{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;align-items:center}
+.reviews-foot p{color:var(--mute);margin-right:auto}
+
+/* servicios */
+.serv-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,80px);align-items:start}
+.serv-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.serv-list li{padding:18px 16px 18px 0;border-bottom:1px solid var(--line);display:grid;gap:4px;min-width:0}
+.serv-list li:nth-child(odd){padding-right:22px}
+.serv-list li:nth-child(even){padding-left:22px;border-left:1px solid var(--line)}
+.serv-list b{font-family:var(--display);font-weight:800;font-size:1.32rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+.serv-list span{font-size:.93rem;color:var(--mute)}
+.serv-side{display:grid;gap:22px}
+.serv-side p{color:var(--mute)}
+
+/* ubicación */
+.loc-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,60px);align-items:stretch}
+.map{position:relative;min-height:380px;background:#17191b;overflow:hidden;border:1px solid var(--line);text-decoration:none;display:block}
+.map svg.streets{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:54%;top:46%;transform:translate(-50%,-100%);display:grid;justify-items:center;gap:6px}
+.pin-tag{background:var(--orange);color:#fff;font-family:var(--display);font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px 6px;white-space:nowrap;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 6px rgba(255,90,31,.25),0 0 0 14px rgba(255,90,31,.1)}
+.map-cta{position:absolute;right:14px;bottom:14px;background:var(--chalk);color:var(--asphalt);font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px 8px;font-size:.92rem}
+.loc-info{display:grid;gap:0;align-content:start;border-top:1px solid var(--line)}
+.loc-row{padding:20px 0;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.loc-row .k{font-family:var(--display);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-size:.85rem}
+.loc-row .v{font-size:1.12rem;color:var(--chalk)}
+.loc-row .s{color:var(--mute);font-size:.95rem}
+.loc-info .btn{margin-top:24px;justify-self:start}
+
+/* contacto */
+.contact{position:relative;overflow:hidden;background:var(--orange);color:#fff}
+.contact::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-60deg,transparent 0 60px,rgba(0,0,0,.05) 60px 120px)}
+.contact .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:center}
+.contact h2{font-size:clamp(2.6rem,6.4vw,4.8rem);transform:skewX(-6deg);transform-origin:left bottom}
+.contact .lead{font-size:1.12rem;max-width:46ch;margin-top:18px}
+.contact .eyebrow{color:#fff;margin-bottom:18px}
+.contact .stripe{background:linear-gradient(#fff 0 3px,transparent 3px 6px,var(--asphalt) 6px 9px)}
+.c-card{background:var(--asphalt);color:var(--chalk);padding:30px 28px;display:grid;gap:20px;clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.c-row{display:grid;gap:4px}
+.c-row .k{font-family:var(--display);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-size:.82rem}
+.c-row .v{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.7rem;letter-spacing:.02em;user-select:all}
+.c-row .v.small{font-family:var(--body);font-weight:500;font-size:1.05rem;letter-spacing:0}
+.copy{font-family:var(--body);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--steel);color:var(--chalk);border:0;padding:6px 10px;cursor:pointer;user-select:none}
+.copy:hover{background:var(--line)}
+.c-card .btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* footer */
+.foot{background:var(--asphalt);border-top:1px solid var(--line)}
+.foot .wrap{padding-block:34px;display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;justify-content:space-between;color:var(--mute);font-size:.9rem}
+.foot .foot-logo{height:44px;width:auto}
+.foot a{color:var(--chalk);text-decoration:none}
+.foot a:hover{color:var(--orange)}
+
+/* floating WhatsApp */
+.fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.45);transition:transform .2s}
+.fab:hover{transform:scale(1.07)}
+.fab svg{width:30px;height:30px}
+
+/* responsive */
+@media (max-width:980px){
+  .nav{display:none}
+  .menu{display:block}
+  .top .btn{display:none}
+  .nav.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--asphalt);border-bottom:1px solid var(--line);padding:8px max(20px,env(safe-area-inset-right,0px)) 18px max(20px,env(safe-area-inset-left,0px))}
+  .nav.open a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1.1rem}
+  .about-grid,.serv-grid,.loc-grid,.contact .wrap{grid-template-columns:1fr}
+  .facts .wrap{grid-template-columns:1fr 1fr}
+  .fact:nth-child(3){border-left:0;padding-left:0}
+  .fact:nth-child(n+3){border-top:1px solid rgba(255,255,255,.28)}
+  .about-media{max-width:520px}
+  }
+@media (max-width:640px){
+  .reviews,.serv-list,.pillars{grid-template-columns:1fr}
+  .serv-list li:nth-child(even){padding-left:0;border-left:0}
+  .serv-list li:nth-child(odd){padding-right:0}
+  .hero-img{background-position:70% 30%}
+  .hero::after{background:linear-gradient(0deg,rgba(17,17,17,.97) 0%,rgba(17,17,17,.8) 55%,rgba(17,17,17,.45) 100%)}
+  .facts .wrap{grid-template-columns:1fr}
+  .fact{border-left:0!important;padding-left:0!important;border-top:1px solid rgba(255,255,255,.28)}
+  .fact:first-child{border-top:0}
+  .c-row .v{font-size:1.4rem}
+  .lb-nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="JC Ayala - Servicio Automotriz, inicio"><img src="img/logo-jc-white.png" alt="JC Ayala - Servicio Automotriz" width="534" height="140"></a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#galeria">Galería</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener">Contáctanos</a>
+    <button class="menu" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero" style="padding:0" aria-label="Presentación">
+    <div class="hero-img" role="img" aria-label="Integrante del equipo junto al Toyota Corolla 77 de JC Ayala - Servicio Automotriz"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="stripe"></span>Tradición familiar · Pasión por los fierros</div>
+        <h1>Tu auto en manos de <em>especialistas</em></h1>
+        <p class="lede">Un oficio que se hereda en familia. Mecánicos de confianza y un dueño que te atiende directamente y sigue tu auto de principio a fin.</p>
+        <div class="actions">
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3Z"/></svg>Contáctanos</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/jcayalaperformance/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a>
+        </div>
+        <p class="where">Av. Vicuña Mackenna Oriente 9964 · A pasos de Metro Trinidad</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <div class="wrap">
+      <div class="fact"><b>Confianza</b><span>Te decimos exactamente qué necesita tu auto, sin vueltas ni gastos sorpresa.</span></div>
+      <div class="fact"><b>Experiencia</b><span>Un oficio heredado de familia y perfeccionado con el tiempo.</span></div>
+      <div class="fact"><b>Detalle</b><span>Trabajo prolijo en cada auto</span></div>
+      <div class="fact"><b>Seguimiento</b><span>Avances por WhatsApp</span></div>
+    </div>
+  </div>
+
+  <section id="nosotros">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="eyebrow"><span class="stripe"></span>Nosotros</div>
+          <h2 style="font-size:clamp(2.4rem,5.6vw,4rem)">Crecimos entre fierros</h2>
+          <p>En la familia Ayala, los fierros se heredan. Crecimos entre motores y herramientas, aprendiendo de quienes nos enseñaron el oficio, y esa tradición tuerca sigue viva en cada auto que entra al taller.</p>
+          <p><strong>JC Ayala - Servicio Automotriz</strong> es el taller de <strong>Christian Ayala</strong>. Él y su equipo de mecánicos hacen lo que les apasiona, por eso tratan cada auto como si fuera propio, con la paciencia y el cuidado que merece.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="alt">
+    <div class="wrap">
+      <div class="serv-grid">
+        <div class="serv-side">
+          <div class="eyebrow"><span class="stripe"></span>Servicios</div>
+          <h2 style="font-size:clamp(2.4rem,5.6vw,4rem)">Lo que hacemos</h2>
+          <p>Trabajamos con autos particulares, de trabajo y deportivos, de todas las marcas. Si no ves lo que necesitas, pregúntanos.</p>
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener" style="justify-self:start">Contáctanos</a>
+        </div>
+        <ul class="serv-list">
+          <li><b>Mantención por kilometraje</b><span>Aceite, filtros, bujías y revisión según pauta.</span></li>
+          <li><b>Frenos</b><span>Pastillas, discos y líquido de frenos.</span></li>
+          <li><b>Embrague</b><span>Cambio de kit completo y sistema hidráulico.</span></li>
+          <li><b>Distribución</b><span>Correa o cadena, con su kit completo.</span></li>
+          <li><b>Motor y culata</b><span>Ajuste de motor, rectificado y empaquetaduras.</span></li>
+          <li><b>Scanner</b><span>Diagnóstico electrónico de fallas y testigos.</span></li>
+          <li><b>Tren delantero</b><span>Suspensión, dirección y rótulas.</span></li>
+          <li><b>Aire acondicionado</b><span>Carga de gas y revisión del sistema.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipo" class="team-sec">
+    <div class="wrap">
+      <div class="team-head">
+        <div class="sec-head" style="margin:0">
+          <div class="eyebrow"><span class="stripe"></span>Equipo</div>
+          <h2>Las manos detrás de tu auto</h2>
+          <p>Un equipo de mecánicos que comparte la misma pasión por los fierros. Trabajamos juntos, nos apoyamos en cada diagnóstico y revisamos cada trabajo antes de entregarte el auto.</p>
+        </div>
+        <div class="team-ctrl" aria-label="Controles del carrusel">
+          <button type="button" class="t-btn" id="tPrev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="t-btn" id="tNext" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="team-track" id="tTrack" tabindex="0" aria-label="Fotos del equipo">
+        <figure class="t-slide"><img src="img/equipo-taller.jpg" alt="Mecánicos del taller sonriendo junto a un auto en preparación" width="691" height="864" loading="lazy"><figcaption><b>Trabajo en equipo</b><span>Cada auto pasa por varias manos expertas.</span></figcaption></figure>
+        <figure class="t-slide"><img src="img/elevador.jpg" alt="Dos mecánicos revisando un auto en el elevador" width="1155" height="864" loading="lazy"><figcaption><b>En el elevador</b><span>Revisamos tu auto por arriba y por abajo.</span></figcaption></figure>
+        <figure class="t-slide"><img src="img/equipo-san-antonio.jpg" alt="El equipo celebrando junto en el autódromo" width="487" height="864" loading="lazy"><figcaption><b>La misma pasión</b><span>Dentro y fuera del taller, somos un equipo.</span></figcaption></figure>
+        <figure class="t-slide"><img src="img/pista-206.jpg" alt="Parte del equipo junto a un auto preparado en el taller" width="487" height="650" loading="lazy"><figcaption><b>Preparados por nosotros</b><span>Autos armados y afinados por el equipo.</span></figcaption></figure>
+      </div>
+      <div class="t-dots" id="tDots"></div>
+    </div>
+  </section>
+
+  <section id="resenas" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="stripe"></span>Reseñas</div>
+        <h2>Lo que dicen nuestros clientes</h2>
+        <p>Opiniones publicadas en nuestra ficha de Google.</p>
+      </div>
+      <div class="reviews">
+        <article class="review">
+          <blockquote>Excelente trabajo por Christian y su equipo de trabajo, generan una confianza en lo que hacen y eso se agradece. Muchas gracias, 10/10.</blockquote>
+          <footer><cite>Sebastián R.</cite><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><span class="src">Google</span></footer>
+        </article>
+        <article class="review">
+          <blockquote>Servicio muy rápido y transparente. Cobran un precio justo. Sin duda volveré en caso de ser necesario.</blockquote>
+          <footer><cite>Francisca S.</cite><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><span class="src">Google</span></footer>
+        </article>
+        <article class="review">
+          <blockquote>Lejos el mejor local donde he llevado mi vehículo. Una atención profesional, lo mejor de La Florida.</blockquote>
+          <footer><cite>James P.</cite><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><span class="src">Google</span></footer>
+        </article>
+        <article class="review">
+          <blockquote>Excelente taller, y la atención personalizada. Recomendable 100%.</blockquote>
+          <footer><cite>Hernán M.</cite><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><span class="src">Google</span></footer>
+        </article>
+      </div>
+      <div class="reviews-foot">
+        <p>¿Ya nos visitaste? Tu opinión ayuda a otros conductores a encontrarnos.</p>
+        <a class="btn btn-ghost maps-link" href="#" target="_blank" rel="noopener">Ver en Google</a>
+        <a class="btn btn-wa maps-link" href="#" target="_blank" rel="noopener">Déjanos tu reseña</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="gallery-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="stripe"></span>Galería</div>
+        <h2>Del taller a la pista</h2>
+        <p>Trabajos reales, nuestro equipo y los autos con los que competimos. Toca una foto para verla en grande; los videos se abren en Instagram.</p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+      <div class="gallery-foot">
+        <p>Más trabajos y videos en nuestro Instagram.</p>
+        <a class="btn btn-ghost" href="https://www.instagram.com/jcayalaperformance/" target="_blank" rel="noopener">Ver @jcayalaperformance</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ubicacion" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="stripe"></span>Ubicación</div>
+        <h2>A pasos de Metro Trinidad</h2>
+      </div>
+      <div class="loc-grid">
+        <a class="map maps-link" href="#" target="_blank" rel="noopener" aria-label="Abrir la ubicación del taller en Google Maps">
+          <svg class="streets" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="600" height="400" fill="#1a1a1a"/>
+            <g stroke="#262a2e" stroke-width="10" fill="none">
+              <path d="M-20 90 L620 70"/><path d="M-20 300 L620 285"/><path d="M110 -20 L95 420"/><path d="M470 -20 L480 420"/><path d="M-20 220 L180 215"/><path d="M400 150 L620 145"/>
+            </g>
+            <path d="M318 -20 L332 420" stroke="#3a3f44" stroke-width="22" fill="none"/>
+            <path d="M318 -20 L332 420" stroke="#ff5a1f" stroke-width="2" stroke-dasharray="10 10" fill="none" opacity=".55"/>
+            <text x="300" y="360" fill="#7d8287" font-family="Saira Condensed, Arial Narrow, sans-serif" font-size="15" font-weight="700" letter-spacing="2" transform="rotate(88 300 360)">AV. VICUÑA MACKENNA</text>
+            <g transform="translate(350 40)"><rect x="-4" y="-4" width="96" height="30" fill="#22262a"/><text x="44" y="16" text-anchor="middle" fill="#c9c7c2" font-family="Saira Condensed, Arial Narrow, sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">M TRINIDAD</text></g>
+          </svg>
+          <div class="pin"><span class="pin-tag">JC Ayala</span><span class="pin-dot"></span></div>
+          <span class="map-cta">Abrir en Google Maps ↗</span>
+        </a>
+        <div class="loc-info">
+          <div class="loc-row"><span class="k">Dirección</span><span class="v">Av. Vicuña Mackenna Oriente 9964</span><span class="s">La Florida, Región Metropolitana</span></div>
+          <div class="loc-row"><span class="k">Cómo llegar</span><span class="v">A pasos de Metro Trinidad</span><span class="s">Línea 4, por la caletera oriente de Vicuña Mackenna</span></div>
+          <div class="loc-row"><span class="k">Atención</span><span class="v">Coordina tu hora por WhatsApp</span><span class="s">Así tenemos todo listo cuando llegues</span></div>
+          <a class="btn btn-wa maps-link" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><span class="stripe"></span>Contacto</div>
+        <h2>Cuéntanos qué le pasa a tu auto</h2>
+        <p class="lead">Escríbenos por WhatsApp con la marca, el modelo y lo que notas. Christian te responde directamente y coordinamos la visita.</p>
+      </div>
+      <div class="c-card">
+        <div class="c-row"><span class="k">WhatsApp · Christian Ayala</span><span class="v"><span id="phone">+56 9 5715 1342</span><button class="copy" type="button" data-copy="+56957151342">Copiar</button></span></div>
+        <div class="c-row"><span class="k">Instagram</span><span class="v small">@jcayalaperformance</span></div>
+        <div class="c-row"><span class="k">Correo</span><span class="v small">cayala171@gmail.com</span></div>
+        <div class="btns">
+          <a class="btn btn-wa wa-link" href="#" target="_blank" rel="noopener">Contáctanos</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/jcayalaperformance/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <img class="foot-logo" src="img/logo-jc-white.png" alt="JC Ayala - Servicio Automotriz" width="534" height="140" loading="lazy">
+    <span>Av. Vicuña Mackenna Oriente 9964, La Florida · +56 9 5715 1342</span>
+    <span>© 2026 JC Ayala - Servicio Automotriz · Sitio por <a href="#inicio">Netsolve Consulting</a></span>
+  </div>
+</footer>
+
+<a class="fab wa-link" href="#" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3Z"/></svg>
+</a>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="lb-nav next" id="lbNext" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb-inner">
+    <img id="lbImg" alt="">
+    <div class="lb-bar"><p id="lbCap"></p><a id="lbLink" href="#" target="_blank" rel="noopener">Ver en Instagram ↗</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var WA = "https://wa.me/56957151342?text=" + encodeURIComponent("Hola Christian, quiero consultar por mi auto.");
+  var MAPS = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Servicio Automotriz Jc Ayala Performance, Av. Vicuña Mackenna 9964, La Florida");
+  document.querySelectorAll(".wa-link").forEach(function(a){ a.href = WA; });
+  document.querySelectorAll(".maps-link").forEach(function(a){ a.href = MAPS; });
+
+  var IG = "https://www.instagram.com/";
+  var items = [
+    {f:"taller-bmw-m4",w:1181,h:864,c:"BMW M4 en nuestro primer local de Vicuña Mackenna",u:"p/B6vwBEoFsuw/"},
+    {f:"equipo-san-antonio",w:487,h:864,c:"Podio del equipo en el Autódromo San Antonio",u:"reel/C2IFS5ILFQd/",v:1},
+    {f:"motor-culata",w:691,h:864,c:"Armado de culata, pieza por pieza",u:"p/B5Y1Nebls6u/"},
+    {f:"corolla-ayala-racing",w:1200,h:719,c:"El Corolla de la familia, con colores Ayala Racing",u:"p/BxxZR4FAq3Q/"},
+    {f:"boxer-culata",w:485,h:864,c:"Peugeot Boxer HDi: rectificado de culata y distribución",u:"reel/DJaz1nds2fX/",v:1},
+    {f:"elevador",w:1155,h:864,c:"Trabajo bajo el auto en el elevador",u:"p/B5nibmmFKmO/"},
+    {f:"equipo-taller",w:691,h:864,c:"El equipo, armando un auto de carrera",u:"p/B9F2wq0pfqA/"},
+    {f:"pista-206",w:487,h:650,c:"Peugeot 206 de pista y parte del equipo",u:"reel/DNcIqiQM38d/",v:1},
+    {f:"lubricantes",w:1155,h:864,c:"Lubricantes y repuestos en el taller",u:"p/ByfldB4FqFM/"},
+    {f:"bmw-autodromo",w:1155,h:864,c:"BMW Serie 1 en el autódromo",u:"p/B5ghU0yF2D3/"},
+    {f:"distribucion",w:485,h:864,c:"Distribución a la vista",u:"reel/DGeyJyWs_1R/",v:1},
+    {f:"fachada",w:1155,h:864,c:"Nuestro local en Vicuña Mackenna",u:"jcayalaperformance/"}
+  ];
+  var play = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';
+  var g = document.getElementById("gallery");
+  items.forEach(function(it, i){
+    var fig = document.createElement(it.v ? "a" : "button");
+    fig.className = "shot";
+    if (it.v){ fig.href = IG + it.u; fig.target = "_blank"; fig.rel = "noopener"; fig.style.cursor = "pointer"; }
+    else { fig.type = "button"; fig.dataset.i = i; }
+    fig.setAttribute("aria-label", (it.v ? "Ver video en Instagram: " : "Ampliar foto: ") + it.c);
+    fig.innerHTML = '<img src="img/' + it.f + '.jpg" alt="' + it.c + '" width="' + it.w + '" height="' + it.h + '" loading="lazy">' +
+      (it.v ? '<span class="badge">' + play + 'Video</span>' : '') +
+      '<figcaption>' + it.c + '</figcaption>';
+    g.appendChild(fig);
+  });
+
+  var photos = items.map(function(it,i){return i;}).filter(function(i){return !items[i].v;});
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbCap = document.getElementById("lbCap"), lbLink = document.getElementById("lbLink");
+  var cur = 0, lastFocus = null;
+  function show(i){ cur = i; var it = items[i]; lbImg.src = "img/" + it.f + ".jpg"; lbImg.alt = it.c; lbCap.textContent = it.c; lbLink.href = IG + it.u; }
+  function open(i){ lastFocus = document.activeElement; show(i); lb.hidden = false; document.getElementById("lbClose").focus(); }
+  function close(){ lb.hidden = true; if (lastFocus) lastFocus.focus(); }
+  function step(d){ var p = photos.indexOf(cur); show(photos[(p + d + photos.length) % photos.length]); }
+  g.addEventListener("click", function(e){ var b = e.target.closest("button.shot"); if (b) open(+b.dataset.i); });
+  document.getElementById("lbClose").onclick = close;
+  document.getElementById("lbPrev").onclick = function(){ step(-1); };
+  document.getElementById("lbNext").onclick = function(){ step(1); };
+  lb.addEventListener("click", function(e){ if (e.target === lb) close(); });
+  document.addEventListener("keydown", function(e){ if (lb.hidden) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
+
+
+  var track=document.getElementById("tTrack"), dots=document.getElementById("tDots");
+  if(track){
+    var slides=[].slice.call(track.children);
+    slides.forEach(function(sl,i){var d=document.createElement("button");d.type="button";d.setAttribute("aria-label","Ir a la foto "+(i+1));d.onclick=function(){track.scrollTo({left:sl.offsetLeft-track.offsetLeft,behavior:"smooth"});};dots.appendChild(d);});
+    function idx(){var x=track.scrollLeft,best=0,bd=1e9;slides.forEach(function(sl,i){var dd=Math.abs(sl.offsetLeft-track.offsetLeft-x);if(dd<bd){bd=dd;best=i;}});return best;}
+    function mark(){var k=idx();[].forEach.call(dots.children,function(d,i){d.setAttribute("aria-current",i===k?"true":"false");});}
+    function go(dir){var k=idx()+dir;var max=track.scrollWidth-track.clientWidth;if(dir>0&&track.scrollLeft>=max-4)k=0;if(k<0)k=slides.length-1;track.scrollTo({left:slides[k].offsetLeft-track.offsetLeft,behavior:"smooth"});}
+    document.getElementById("tPrev").onclick=function(){go(-1);};
+    document.getElementById("tNext").onclick=function(){go(1);};
+    track.addEventListener("scroll",function(){clearTimeout(track._t);track._t=setTimeout(mark,80);});
+    mark();
+  }
+
+  var menu = document.getElementById("menu"), nav = document.getElementById("nav");
+  menu.addEventListener("click", function(){ var o = nav.classList.toggle("open"); menu.setAttribute("aria-expanded", o); });
+  nav.addEventListener("click", function(e){ if (e.target.tagName === "A"){ nav.classList.remove("open"); menu.setAttribute("aria-expanded", "false"); } });
+
+  document.querySelectorAll(".copy").forEach(function(b){
+    b.addEventListener("click", function(){
+      var t = b.dataset.copy;
+      function done(){ b.textContent = "Copiado"; setTimeout(function(){ b.textContent = "Copiar"; }, 1600); }
+      function fallback(){ var r = document.createRange(); r.selectNodeContents(document.getElementById("phone")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      try { navigator.clipboard.writeText(t).then(done, fallback); } catch(err){ fallback(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
